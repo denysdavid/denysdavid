@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AxeIA | Em Construção</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        /* Variáveis e estilos conforme seu código original, removendo @import */
+        /* Importação de fontes do Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap');
 
         :root {
-            --color-ia-start: #8A2BE2;
-            --color-ia-end: #C8A2C8;
-            --color-axe-text: #2c3e50;
+            /* Cores baseadas no conceito AxeIA */
+            --color-ia-start: #8A2BE2; /* Roxo vibrante */
+            --color-ia-end: #C8A2C8;   /* Lilás */
+            --color-axe-text: #2c3e50; /* Azul escuro quase preto */
             --color-background: #FFFFFF;
-            --color-accent-blue: #6A5ACD;
-            --color-accent-purple: #9370DB;
+            --color-accent-blue: #6A5ACD; /* Azul mais claro para detalhes */
+            --color-accent-purple: #9370DB; /* Roxo para detalhes */
             --color-progress-bar: linear-gradient(90deg, var(--color-ia-start), var(--color-ia-end));
         }
 
@@ -37,18 +37,104 @@
             line-height: 1.6;
         }
 
-        /* Resto do CSS igual, exceto a cor do subtitle */
+        .header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif; /* Fonte para o logo */
+            font-size: 3em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-text-axe {
+            color: var(--color-axe-text);
+            margin-right: 2px; /* Pequeno espaçamento entre Axe e IA */
+            font-weight: 600; /* Um pouco menos bold que IA */
+        }
+
+        .logo-text-ia {
+            background: linear-gradient(to right, var(--color-ia-start), var(--color-ia-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700; /* Mais bold para IA */
+            position: relative;
+        }
+
+        /* Elementos sutis do logo ao redor (simulados aqui) */
+        .logo-elements {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.1; /* Elementos bem sutis no fundo do logo */
+            z-index: -1;
+        }
+
+        .element {
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-accent-blue);
+            border-radius: 50%;
+            position: absolute; /* Posicionamento mais livre */
+        }
+
+        .element.shopping { top: 10%; left: 15%; background-color: var(--color-accent-purple); border-radius: 5px;}
+        .element.chat { bottom: 5%; right: 20%; background-color: var(--color-accent-blue); border-radius: 50%; }
+        .element.check { top: 5%; right: 10%; background-color: var(--color-ia-end); clip-path: polygon(14% 44%, 0 65%, 34% 100%, 100% 16%, 80% 0%, 31% 54%); } /* Simula um checkmark */
+
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-section {
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para destaque */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: var(--color-axe-text);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
 
         .subtitle {
             font-size: 1.2em;
-            color: #444; /* Melhor contraste */
+            color: #555;
             margin-bottom: 30px;
         }
 
-        /* Progress container com ARIA */
         .progress-container {
-            width: 70%;
-            height: 10px;
+            width: 80%;
+            height: 15px;
             background-color: #e0e0e0;
             border-radius: 5px;
             margin: 30px auto 15px;
@@ -56,14 +142,119 @@
             position: relative;
         }
 
-        /* ... restante do CSS ... */
+        .progress-bar {
+            width: 90%; /* Ajuste a porcentagem conforme o progresso */
+            height: 100%;
+            background: var(--color-progress-bar);
+            border-radius: 5px;
+            animation: fillProgress 2s ease-out forwards;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 90%; }
+        }
+
+        .progress-text {
+            position: absolute;
+            top: -25px; /* Posição acima da barra */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: var(--color-accent-purple);
+            font-weight: 600;
+        }
+
+        .coming-soon-message {
+            font-size: 1.1em;
+            color: var(--color-accent-blue);
+            margin-top: 20px;
+            font-weight: 400;
+        }
+
+        .icon-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            font-size: 2.5em; /* Tamanho dos emojis */
+        }
+
+        .grid-item {
+            padding: 10px;
+            background-color: rgba(var(--color-accent-purple), 0.1); /* Fundo sutil para os ícones */
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .footer {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+            margin-top: auto; /* Empurra o footer para baixo */
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            .logo {
+                font-size: 2.5em;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .subtitle {
+                font-size: 1em;
+            }
+            .hero-section {
+                padding: 30px;
+            }
+            .progress-container {
+                width: 90%;
+            }
+            .icon-grid {
+                gap: 20px;
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2em;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .subtitle {
+                font-size: 0.9em;
+            }
+            .hero-section {
+                padding: 20px;
+            }
+            .icon-grid {
+                flex-wrap: wrap; /* Ícones em linha quebrada em telas pequenas */
+                gap: 15px;
+            }
+            .progress-text {
+                font-size: 0.8em;
+                top: -20px;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="logo" aria-label="Logo AxeIA">
+        <div class="logo">
             <span class="logo-text-axe">Axe</span><span class="logo-text-ia">IA</span>
-            <div class="logo-elements" aria-hidden="true">
+            <div class="logo-elements">
                 <div class="element shopping"></div>
                 <div class="element chat"></div>
                 <div class="element check"></div>
@@ -75,16 +266,16 @@
         <section class="hero-section">
             <h1>Estamos Construindo o Futuro das Suas Compras!</h1>
             <p class="subtitle">A inteligência artificial que vai revolucionar a forma como você encontra e compra.</p>
-            <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" aria-label="Progresso do desenvolvimento do site">
+            <div class="progress-container">
                 <div class="progress-bar"></div>
                 <span class="progress-text">90% Concluído - Quase lá!</span>
             </div>
             <p class="coming-soon-message">Prepare-se para uma experiência de compra inteligente, conectada e sem igual.</p>
-            <div class="icon-grid" aria-label="Ícones representando compras, chat, confirmação e internet">
-                <div class="grid-item" role="img" aria-label="Sacola de compras">🛍️</div>
-                <div class="grid-item" role="img" aria-label="Bate-papo">💬</div>
-                <div class="grid-item" role="img" aria-label="Marca de verificação">✅</div>
-                <div class="grid-item" role="img" aria-label="Globo terrestre">🌐</div>
+            <div class="icon-grid">
+                <div class="grid-item">🛍️</div>
+                <div class="grid-item">💬</div>
+                <div class="grid-item">✅</div>
+                <div class="grid-item">🌐</div>
             </div>
         </section>
     </main>
